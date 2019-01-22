@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+
+  <!-- using local store for client. Using db another option -->
+  <!-- Not requiring https. Assuming behind TLS terminated proxy/ingress -->
+  <oauthProvider id="mwi"
+    httpsRequired="false"
+    autoAuthorize="true">
+    <autoAuthorizeClient>client01</autoAuthorizeClient>
+    <localStore>
+      <client name="client01" secret="thisismylittlesecret"
+        displayname="Maximo Worker Insights client"
+        scope="openid"
+        redirect="https://iotworkerinsights.ibm.com/proxyRedirect"
+        enabled="true" />
+    </localStore>
+  </oauthProvider>
+
+  <openidConnectProvider id="mwi" oauthProviderRef="mwi" sessionManaged="true" />
+
+  <webAppSecurity allowFailOverToBasicAuth="true" httpOnlyCookies="false" ssoCookieName="mwi_sso_cookie"/>
+
+  <httpSession cookieHttpOnly="false"/>
+<!--
+  <basicRegistry id="basic">
+     <user name="admin" password="admin" />
+  </basicRegistry>
+-->
+  <administrator-role>
+     <user>admin</user>
+  </administrator-role>
+  <remoteFileAccess>
+     <writeDir>${server.config.dir}</writeDir>
+  </remoteFileAccess>
+
+  <!--
+      sslEnabled="true"
+      sslRef="LDAPSSLSettings">
+  -->
+
+  <!-- Allows all users access as long as they are authenticated. Can be limited to a ldap group if wanted -->
+  <oauth-roles>
+    <authenticated>
+      <special-subject type="ALL_AUTHENTICATED_USERS"/>
+    </authenticated>
+  </oauth-roles>
+
+  <!-- Replace with correct LDAP credentials -->
+  <ldapRegistry id="ldap" realm="LdapRealm"
+      host="ldap-service.openldap.svc.cluster.local" port="389" ignoreCase="true"
+      baseDN="dc=ibm,dc=com"
+      ldapType="Custom"
+      bindDN="cn=admin,dc=ibm,dc=com"
+      bindPassword="123admin123"
+      recursiveSearch="true">
+      <customFilters
+        userFilter="(&amp;(cn=%v)(objectClass=inetOrgPerson))"
+        groupFilter="(&amp;(cn=%v)(objectclass=posixGroup))"
+        userIdMap="*:cn"
+        groupIdMap="*:cn"
+        groupMemberIdMap="groupOfUniqueNames:uniqueMember">
+      </customFilters>
+  </ldapRegistry>
+
+  <!--
+  <ssl id="LDAPSSLSettings" keyStoreRef="LDAPKeyStore" trustStoreRef="LDAPTrustStore" />
+
+  <keyStore id="LDAPKeyStore" location="${server.config.dir}/LdapSSLKeyStore.jks"
+            type="JKS" password="{xor}CDo9Hgw=" />
+  <keyStore id="LDAPTrustStore" location="${server.config.dir}/LdapSSLTrustStore.jks"
+            type="JKS" password="{xor}CDo9Hgw=" />
+  -->
+
+</server>

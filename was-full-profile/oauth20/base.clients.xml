@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OAuthClientConfiguration>
+
+<client id="client01" component="MWI" secret="thisismylittlesecret" displayname="Maximo Worker Insights Client" redirect="https://iotworkerinsights.ibm.com/proxyRedirect" enabled="true"></client>
+<!--
+<client id="client02" component="MWI" secret="thisismylittlesecret" displayname="Maximo Worker InsightsClient" redirect="http://localhost:10010/docs/o2c.html" enabled="true"></client>
+<client id="client03" component="MWI" secret="thisismylittlesecret" displayname="Maximo Worker Insights Client" redirect="https://ioti-stage1.us-south.containers.mybluemix.net/proxyRedirect" enabled="true"></client>
+-->
+
+<!--
+Format:
+ <client id="client name" component="OAuth service provider name" secret="client's secret, encoded or unencoded" displayname="registered client's dispaly name" redirect="Redirection Endpoint" enabled="true">
+ </client>
+Example:
+  <client id="client_s" component="OAuthConfigSample" secret="{xor}LDo8LTor" displayname="client_s" redirect="https://acme.austin.ibm.com:9443/oauthclient/redirect.jsp" enabled="true">
+  </client>
+  <client id="client_a" component="OAuthConfigAuto" secret="secret" displayname="client_a" redirect="https://acme.austin.ibm.com:9443/oauthclient/redirect.jsp" enabled="true">
+  </client>
+  <client id="client_p" component="OAuthPublicClient" secret="{xor}LDo8LTor" displayname="client_p" redirect="https://acme.austin.ibm.com:9443/oauthclient/redirect.jsp" enabled="true">
+  </client>
+  <client id="user3" component="OAuthConfigSample" secret="{xor}LDo8LTor" displayname="user3" redirect="https://acme.austin.ibm.com:9443/oauthclient/redirect.jsp" enabled="true">
+  </client>
+  <client id="client_t" component="OAuthConfigTest" secret="{xor}LDo8LTor" displayname="client_t" redirect="https://acme.austin.ibm.com:9443/oauthclient/redirect.jsp" enabled="true">
+  </client>
+
+-->
+
+</OAuthClientConfiguration>
