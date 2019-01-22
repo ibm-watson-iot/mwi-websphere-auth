@@ -1,0 +1,30 @@
+<!--
+ *****************************************************************************
+ Copyright (c) 2019 IBM Corporation and other Contributors.
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v2.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v20.html
+ *****************************************************************************
+ -->
+<server description="Liberty Authorization Server">
+
+   <!-- Enable features -->
+	<featureManager>
+		<feature>openidConnectServer-1.0</feature>
+    <feature>appSecurity-2.0</feature>
+    <feature>ldapRegistry-3.0</feature>
+    <feature>localConnector-1.0</feature>
+    <feature>ssl-1.0</feature>
+    <feature>oauth-2.0</feature>
+    <!-- Uncomment for adding admin center -->
+    <feature>adminCenter-1.0</feature>
+	</featureManager>
+
+  <applicationMonitor dropinsEnabled="false" pollingRate="1000ms" updateTrigger="mbean"/>
+
+  <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="9080" httpsPort="9443"/>
+
+  <include location="config/config.xml"/>
+
+</server>
