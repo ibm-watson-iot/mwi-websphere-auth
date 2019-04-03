@@ -5,6 +5,7 @@
 # which accompanies this distribution, and is available at
 # http://www.eclipse.org/legal/epl-v20.html
 ##############################################################################
+from __future__ import print_function
 import sys
 
 node = sys.argv[0]
@@ -15,7 +16,7 @@ war = sys.argv[2]
 returncode = 0
 
 # Enable OAuth2 provider
-print "Enabling WAS OAuth2 provider"
+print("Enabling WAS OAuth2 provider")
 try:
   AdminTask.enableOAuthTAI()
   # Save
@@ -23,15 +24,15 @@ try:
 except:
   _type_, _value_, _tbck_ = sys.exc_info()
   error = `_value_`
-  print "Error Installing Application"
-  print "Error Message = "+error
+  print("Error Installing Application")
+  print("Error Message = "+error)
   #indicate an error due to an unsuccessful installation
   returncode = 1
 #endTry
 
 # Installing Maximo Worker Insights servlet for authentication
 try:
-  print "Installing Maximo Worker Insights authentication servlet"
+  print("Installing Maximo Worker Insights authentication servlet")
 
   attrs = [
     '-appname', 'iotwhi',
@@ -46,8 +47,8 @@ try:
 except:
   _type_, _value_, _tbck_ = sys.exc_info()
   error = `_value_`
-  print "Error Installing Application"
-  print "Error Message = "+error
+  print("Error Installing Application")
+  print("Error Message = "+error)
   #indicate an error due to an unsuccessful installation
   returncode = 2
 #endTry
