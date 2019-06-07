@@ -23,7 +23,7 @@ try:
   AdminConfig.save()
 except:
   _type_, _value_, _tbck_ = sys.exc_info()
-  error = `_value_`
+  error = repr(_value_)
   print("Error Installing Application")
   print("Error Message = "+error)
   #indicate an error due to an unsuccessful installation
